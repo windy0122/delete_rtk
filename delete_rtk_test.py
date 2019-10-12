@@ -4,22 +4,9 @@ import redis
 # global null
 # null = ''
 
-host_uat = '10.12.64.205'
-port_uat = '6889'
-password_uat = 'v3X7yNFK'
-
 host_test = '10.12.64.212'
 port_test = '6379'
 # password_uat = 'v3X7yNFK'
-
-connection_local = MySQLdb.connect(
-    host='localhost',
-    user='root',
-    passwd='123456',
-    port=3306,
-    db='rts_member',
-    charset="utf8"
-    )
 
 connection_test = MySQLdb.connect(
     host='10.12.64.222',
@@ -30,7 +17,6 @@ connection_test = MySQLdb.connect(
     charset="utf8"
     )
 
-r_uat = redis.Redis(host=host_uat, port=port_uat, password=password_uat, db=1, decode_responses=True)
 r_test = redis.Redis(host=host_test, port=port_test, db=5, decode_responses=True)
 
 member_id = input('请输入顾客id：')
