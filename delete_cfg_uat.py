@@ -46,24 +46,23 @@ class DeleteRtkTest(object):
         login_get_key1 = self.r_test.keys('rts:LoginToken.' + eval(login_get_key))
         print(login_get_key1)
 
+        try:
+            # 执行sql语句
+            self.c.execute(sql1)
+            self.c.execute(sql2)
+            self.c.execute(sql3)
 
-        # try:
-        #     # 执行sql语句
-        #     self.c.execute(sql1)
-        #     self.c.execute(sql2)
-        #     self.c.execute(sql3)
-        #
-        #     # 修改数据后需要提交才能同步到数据库中
-        #     self.connection_test.commit()
-        #
-        #     self.r_test.delete(login_get_key1[0])
-        #
-        #     self.r_test.delete(login_key[0])
-        #
-        # except:
-        #     # 如果失败会回滚到上一个版本
-        #     print('执行失败')
-        #     # connection.rollback()
+            # 修改数据后需要提交才能同步到数据库中
+            self.connection_test.commit()
+
+            self.r_test.delete(login_get_key1[0])
+
+            self.r_test.delete(login_key[0])
+
+        except:
+            # 如果失败会回滚到上一个版本
+            print('执行失败')
+            # connection.rollback()
 
 
 if __name__ == '__main__':
