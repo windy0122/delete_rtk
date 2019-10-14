@@ -1,5 +1,6 @@
 import MySQLdb
 import redis
+from delete_rtk.read_ini import ReadIni
 
 # global null
 # null = ''
@@ -32,13 +33,13 @@ sql3 = 'delete from tb_member_customer where ID=' + member_id
 rows_aff = c.execute(sql)
 open_id = c.fetchall()[0][4]
 
-login_key = r_test.keys('rts:LoginToken.'+ open_id)
-login_get_key = r_test.get('rts:LoginToken.'+ open_id)
+login_key = r_test.keys('rts:LoginToken.'+open_id)
+login_get_key = r_test.get('rts:LoginToken.'+open_id)
 
 # eval()可以去去掉字符串的引号
 login_get_key1 = r_test.keys('rts:LoginToken.' + eval(login_get_key))
 
-login_key1 = r_test.keys(login_key[0])
+# login_key1 = r_test.keys(login_key[0])
 
 
 try:
@@ -52,9 +53,11 @@ try:
 
     r_test.delete(login_get_key1[0])
 
-    r_test.delete(login_key1[0])
+    r_test.delete(login_key[0])
 
 except:
     # 如果失败会回滚到上一个版本
     print('执行失败')
     # connection.rollback()
+
+
